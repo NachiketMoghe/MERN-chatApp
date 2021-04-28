@@ -1,19 +1,29 @@
 // imports
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const dotenv = require('dotenv');
+
 import express from 'express';
 import mongoose from 'mongoose';
 import Messages from './dbMessages.js';
 import Pusher from 'pusher';
 import cors from 'cors';
 
+
 // App Configuration
 const app = express();
+
+dotenv.config({
+    path: './config.env',
+  });
+
 const port = process.env.PORT || 9000;
 
 const pusher = new Pusher({
-    appId: "1194406",
-    key: "3fbad04e9c4d5c875da9",
-    secret: "bff62818d2b40b5892fa",
-    cluster: "ap2",
+    appId: process.env.APPID,
+    key: process.env.KEY,
+    secret: process.env.SECRET,
+    cluster: process.env.CLUSTER,
     useTLS: true
   });
 
@@ -27,8 +37,15 @@ app.use((req, res, next) =>{
     res.setHeader("Access-Control-Allow-Headers", "*");
     next();
 });
+
 // DB
-const connection_url = 'mongodb+srv://admin:AvhDSC9VcIYdADuo@cluster0.jdizx.mongodb.net/chatAppDB?retryWrites=true&w=majority'
+
+
+  
+  const connection_url = process.env.DATABASE.replace(
+    '<password>',
+    process.env.DATABASE_PASSWORD
+  );
 mongoose.connect(connection_url,{
         useCreateIndex: true,
         useNewUrlParser: true,
