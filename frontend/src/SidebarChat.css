@@ -1,0 +1,27 @@
+.sidebarChat{
+    display: flex;
+    /* padding-left: 10px; */
+    cursor: pointer;
+    border-bottom: 1px solid #f6f6f6;
+    padding: 5px 15px 5px 13px;
+    /* display: flex; */
+    flex: none;
+    align-items: center;
+}
+
+.sidebarInfo{
+    padding-left: 15px;
+    /* padding-top: 0px; */
+    /* margin-bottom: 15px; */
+    margin-top: 5px;
+
+}
+
+h3{
+    margin-bottom: -15px;
+
+}
+p{
+    margin-top: 25px;
+
+}
